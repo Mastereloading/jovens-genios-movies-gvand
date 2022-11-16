@@ -1,22 +1,23 @@
 <template>
-  <v-avatar
+  <div>
+    <v-avatar
     color="primary"
     size="56"
-  >MJG</v-avatar>
-  <h1>Home</h1>
-  <genre-component />
+    >MJG</v-avatar>
+    <h1>Home</h1>
+    <genre-component />
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import GenreComponent from '../components/GenreComponent.vue'
+  import Vue from 'vue'
+  import GenreComponent from '../components/GenreComponent.vue'
 
-export default defineComponent({
-  name: 'HomeView',
+  export default Vue.extend({
+    name: 'Home',
 
-  components: {
-    GenreComponent
-  },
-})
-
+    components: {
+      GenreComponent
+    },
+  })
 </script>

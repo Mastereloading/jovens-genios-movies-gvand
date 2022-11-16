@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+    <v-app>
     <v-main>
       <header-component />
       <router-view />
@@ -8,22 +8,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import Vue from 'vue'
 import HeaderComponent from '../src/components/HeaderComponent.vue'
-import colors from '../src/styles/colors'
 
-export default defineComponent({
+export default Vue.extend({
   name: 'App',
-  
+
   components: {
     HeaderComponent
-  },
-
-  data () {
-    return {
-      aaa: '#FF00FF',
-      colors
-    }
   }
-})
+});
 </script>
