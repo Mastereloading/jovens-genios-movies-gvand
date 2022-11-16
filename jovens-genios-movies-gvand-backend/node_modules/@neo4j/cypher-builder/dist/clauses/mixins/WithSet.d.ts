@@ -1,0 +1,7 @@
+import { SetClause, SetParam } from "../sub-clauses/Set";
+import { ClauseMixin } from "./ClauseMixin";
+export declare abstract class WithSet extends ClauseMixin {
+    protected setSubClause: SetClause | undefined;
+    set(...params: SetParam[]): this;
+}
+//# sourceMappingURL=WithSet.d.ts.map

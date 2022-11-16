@@ -1,0 +1,1 @@
+{"version":3,"file":"escape-label.js","sourceRoot":"","sources":["../../src/utils/escape-label.ts"],"names":[],"mappings":";AAAA;;;;;;;;;;;;;;;;;GAiBG;;;AAEH,SAAgB,WAAW,CAAC,KAAa;IACrC,MAAM,YAAY,GAAG,KAAK,CAAC,OAAO,CAAC,UAAU,EAAE,GAAG,CAAC,CAAC,OAAO,CAAC,IAAI,EAAE,IAAI,CAAC,CAAC;IACxE,OAAO,KAAK,YAAY,IAAI,CAAC;AACjC,CAAC;AAHD,kCAGC"}
