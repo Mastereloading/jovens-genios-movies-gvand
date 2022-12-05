@@ -23,6 +23,12 @@ const typeDefs = gql`
   type Genre {
     name: String!
   }
+  type Actor {
+    name: String!
+  }
+  type Director {
+    name: String!
+  }
   `
 
 const neo4jGraphQL = new Neo4jGraphQL({

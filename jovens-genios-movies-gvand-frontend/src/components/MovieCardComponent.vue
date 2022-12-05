@@ -1,9 +1,15 @@
 <template>
     <div class="moviecard">
         <img class="movieimage" :src="movieData.poster" :alt="movieData.title" />
+        <h1>ooii</h1>
+        <h1>ooii</h1>
+        <h1>ooii</h1>
+        <h1>ooii</h1>
         <div class="moviecard--scrollup">
             <h3 class="title">{{ movieData.title }}</h3>
-            <p class="details">{{ movieData.year }} - {{ movieData.runtime }} minutes</p>
+            <p class="details">Year: {{ movieData.year }}</p>
+            <p class="details">Duration: {{ movieData.runtime }} minutes</p>
+            <p class="details">Director: {{ movieData.directors[0].name }}</p>
             <div class="rating">
                 <v-icon
                     class="star five"

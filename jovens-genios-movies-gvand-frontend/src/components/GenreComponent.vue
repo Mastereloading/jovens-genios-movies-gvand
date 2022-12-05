@@ -1,26 +1,3 @@
-<script setup>
-import gql from "graphql-tag"
-import { useQuery } from '@vue/apollo-composable'
-import { computed } from 'vue'
-
-const ALL_MOVIES = gql`
-    query Movies($where: MovieWhere) {
-        movies(options: { limit: 10 }, where: $where) {
-            title
-            plot
-            poster
-            year
-            runtime
-            imdbRating
-        }
-    }
-`;
-
-const { result } = useQuery(ALL_MOVIES, { where: { genres_SOME: { name: "Romance" }}})
-const movies = computed(() => result.value?.movies ?? [])
-
-</script>
-
 <template>
     <div class="movieRow">
         <h2>{{ genreData.name }}</h2>
@@ -59,6 +36,9 @@ const movies = computed(() => result.value?.movies ?? [])
 <script>
 import { defineComponent } from 'vue'
 import MovieCardComponent from '../components/MovieCardComponent.vue'
+import gql from "graphql-tag"
+import { useQuery } from '@vue/apollo-composable'
+import { computed } from 'vue'
 
 export default defineComponent({
     name: 'GenreComponent',
@@ -93,7 +73,27 @@ export default defineComponent({
         }
     },
     data () {
+        const ALL_MOVIES = gql`
+            query Movies($where: MovieWhere) {
+                movies(options: { limit: 10 }, where: $where) {
+                    title
+                    plot
+                    poster
+                    year
+                    runtime
+                    imdbRating
+                    directors {
+                        name
+                    }
+                }
+            }
+        `;
+
+        const { result } = useQuery(ALL_MOVIES, { where: { genres_SOME: { name: this.genreData.name }}})
+        const movies = computed(() => result.value?.movies ?? [])
+
         return {
+            movies: movies,
             marginList: 0,
             listWidthLength: 10 * 210
         }
