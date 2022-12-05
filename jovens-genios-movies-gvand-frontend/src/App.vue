@@ -2,7 +2,7 @@
   <div>
     <v-app>
       <v-main>
-        <header-component />
+        <!-- <header-component /> -->
         <router-view />
       </v-main>
     </v-app>
@@ -29,7 +29,10 @@
 </script>
 
 <style scoped>
-  div {
-    flex: 1
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+  div {  
+    font-family: 'Roboto', sans-serif;
+    background-color: v-bind('colors.white')
   }
 </style>

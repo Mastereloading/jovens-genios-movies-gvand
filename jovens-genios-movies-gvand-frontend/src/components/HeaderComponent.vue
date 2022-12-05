@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-toolbar
-    color="blue"
-    elevation="2"
+      class="toolbar"
+      elevation="2"
     >
     <v-toolbar-title>MJG Movies</v-toolbar-title>
     <v-spacer></v-spacer>
@@ -25,19 +25,22 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue'
+import colors from '@/styles/colors'
 
 export default defineComponent({
-    name: 'HeaderComponent'
+    name: 'HeaderComponent',
+    data () {
+      return {
+        colors: colors
+      }
+    }
 })
 </script>
 
 <style scoped>
-  /* div {
-    background-color: red
+  .toolbar {
+    background-color: v-bind('colors.blue')
   }
-  .oi {
-    background-color: red
-  } */
 </style>

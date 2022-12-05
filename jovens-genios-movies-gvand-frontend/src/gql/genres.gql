@@ -1,0 +1,5 @@
+query Genres {
+    genres(options: { limit: 5 }) {
+        name
+    }
+}

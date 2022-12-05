@@ -1,0 +1,10 @@
+query Movies {
+    movies(options: { limit: 10 }, where: { genres_SOME: { name: genreData.name }}) {
+        title
+        plot
+        poster
+        year
+        runtime
+        imdbRating
+    }
+}

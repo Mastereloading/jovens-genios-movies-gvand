@@ -16,7 +16,7 @@ const ALL_MOVIES = gql`
     }
 `;
 
-const { result } = useQuery(ALL_MOVIES, { where: { genres_SOME: { name: "Romance" }}})
+const { result } = useQuery(ALL_MOVIES, { where: { genres_SOME: { name: genreData.name }}})
 const movies = computed(() => result.value?.movies ?? [])
 
 </script>

@@ -4,12 +4,13 @@ import { useQuery } from '@vue/apollo-composable'
 import { watchEffect, computed } from 'vue'
 
 const ALL_MOVIES = gql`
-  query{
+  query {
     people {
       name
     }
   }
 `;
+
 const { result } = useQuery(ALL_MOVIES);
 const people = computed(() => result.value?.people ?? []);
 watchEffect(() => {

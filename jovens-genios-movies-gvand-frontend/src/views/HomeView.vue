@@ -1,18 +1,34 @@
+<script setup>
+import gql from "graphql-tag"
+import { useQuery } from '@vue/apollo-composable'
+import { computed } from 'vue'
+
+const ALL_GENRES = gql`
+    query Genres {
+        genres(options: { limit: 5 }) {
+            name
+        }
+    }
+`;
+
+const { result } = useQuery(ALL_GENRES)
+const genres = computed(() => result.value?.genres ?? [])
+
+</script>
+
 <template>
   <div>
-    <v-avatar
-    color="primary"
-    size="56"
-    >MJG</v-avatar>
-    <h1>Home</h1>
-    <genre-component />
-    <!-- <query /> -->
+    <ul>
+        <li v-for="genre in genres || []" :key="genre.name">
+          <GenreComponent :genreData="genre" />
+        </li>
+    </ul>
   </div>
 </template>
 
 <script>
+import MovieCardComponent from '@/components/MovieCardComponent.vue'
 import { defineComponent } from 'vue'
-// import Query from '../neo4j/Query.vue'
 import GenreComponent from '../components/GenreComponent.vue'
 
 export default defineComponent({
@@ -20,13 +36,7 @@ export default defineComponent({
 
   components: {
     GenreComponent,
-    // Query
-  }
+    MovieCardComponent
+}
 })
 </script>
-
-<style scoped>
-  div {
-    background-color: yellow;
-  }
-</style>

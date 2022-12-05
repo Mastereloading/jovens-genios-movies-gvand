@@ -1,0 +1,9 @@
+gql`
+  type Movie {
+    title: String
+  }
+  type Genre {
+    title: String
+    description: String
+  }
+`
