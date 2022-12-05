@@ -1,10 +1,6 @@
 <template>
     <div class="moviecard">
         <img class="movieimage" :src="movieData.poster" :alt="movieData.title" />
-        <h1>ooii</h1>
-        <h1>ooii</h1>
-        <h1>ooii</h1>
-        <h1>ooii</h1>
         <div class="moviecard--scrollup">
             <h3 class="title">{{ movieData.title }}</h3>
             <p class="details">Year: {{ movieData.year }}</p>
@@ -131,7 +127,7 @@ export default defineComponent({
         width: 180px;
         position: relative;
         border-radius: 5px 5px 0px 0px;
-        box-shadow: 3px 3px 8px black;
+        box-shadow: 1px 2px 5px black;
     }
     .movieimage {
         height: 240px;
@@ -141,14 +137,15 @@ export default defineComponent({
         border-radius: 5px 5px 0px 0px;
     }
     .moviecard--scrollup {
+        overflow: hidden;
         text-align: center;
         top: 160px;
         width: 180px;
         height: 80px;
         position: absolute;
         z-index: 2;
-        background-color: rgba(64, 64, 64, 0.875);
-        transition: all ease 0.2s;        
+        background-color: rgba(32, 32, 32, 0.875);
+        transition: all ease 0.2s;
     }
     .moviecard--scrollup:hover {
         top: 60px;

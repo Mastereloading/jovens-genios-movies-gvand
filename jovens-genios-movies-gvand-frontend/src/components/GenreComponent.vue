@@ -1,28 +1,30 @@
 <template>
     <div class="movieRow">
-        <h2>{{ genreData.name }}</h2>
+        <h1>{{ genreData.name }}</h1>
         <div class="movieRow--listarea">
-            <div
-                class="movieRow--left"
-                @click="handleLeftArrow()"
-            >
-                <v-icon
-                    color="#F8F8F8"
-                    x-large
+            <div class="movieRow--arrows">
+                <div
+                    class="movieRow--left"
+                    @click="handleLeftArrow()"
                 >
-                    mdi-arrow-left
-                </v-icon>
-            </div>
-            <div
-                class="movieRow--right"
-                @click="handleRightArrow()"
-            >
-                <v-icon
-                    x-large
-                    color="#F8F8F8"
+                    <v-icon
+                        color="#F8F8F8"
+                        x-large
+                    >
+                        mdi-arrow-left
+                    </v-icon>
+                </div>
+                <div
+                    class="movieRow--right"
+                    @click="handleRightArrow()"
                 >
-                    mdi-arrow-right
-                </v-icon>
+                    <v-icon
+                        x-large
+                        color="#F8F8F8"
+                    >
+                        mdi-arrow-right
+                    </v-icon>
+                </div>
             </div>
             <ul class="movieRow--list">
                 <li v-for="movie in movies  || []" :key="movie.title">
@@ -52,7 +54,7 @@ export default defineComponent({
         handleLeftArrow() {
             console.log('LEFT')
 
-            this.marginList = this.marginList + Math.round(window.innerWidth / 2)
+            this.marginList = this.marginList + Math.round(this.screenSize / 2)
             
             if (this.marginList >= 0) {
                 this.marginList = 0
@@ -63,12 +65,13 @@ export default defineComponent({
         handleRightArrow() {
             console.log('RIGHT')
 
-            this.marginList = this.marginList - Math.round(window.innerWidth / 2)
+            this.marginList = this.marginList - Math.round(this.screenSize / 2)
 
-            if ((window.innerWidth - 1980) > this.marginList) {
-                this.marginList = (window.innerWidth - 1980) - 30 
+            if ((this.screenSize - 1980) > this.marginList) {
+                this.marginList = (this.screenSize - 1980) - 30 
             }
 
+            console.log('aaa' + this.screenSize)
             console.log(this.marginList)
         }
     },
@@ -94,6 +97,7 @@ export default defineComponent({
 
         return {
             movies: movies,
+            screenSize: window.innerWidth,
             marginList: 0,
             listWidthLength: 10 * 210
         }
@@ -108,8 +112,10 @@ export default defineComponent({
     .movieRow {
         margin-bottom: 30px;
     }
-    .movieRow h2 {
-        margin: 0px 0px 0px 30px;
+    .movieRow h1 {
+        color: #232323;
+        font-size: 38px;
+        margin: 5px 0px 5px 30px;
     }
     .movieRow h3 {
         margin: 0px 0px 10px 30px;
@@ -128,12 +134,19 @@ export default defineComponent({
         margin: 0px 15px 0px 0px;
 
     }
-    .movieRow--left, .movieRow--right {
-        z-index: 3;
-        background-color: rgba(0, 0, 0, 0.2);
+    .movieRow--arrows {
         position: absolute;
-        width: 50px;
-        height: 240px;
+        left: 0px;
+        width: 100%;
+        display: inline-block;
+    }
+    .movieRow--left, .movieRow--right {
+        top: -10px;
+        z-index: 3;
+        background-color: rgba(32, 32, 32, 0.875);
+        position: absolute;
+        width: 60px;
+        height: 260px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -141,14 +154,18 @@ export default defineComponent({
     }
     .movieRow--left {
         left: 0;
-        background-color: rgba(43, 43, 43, 0.6);
     }
     .movieRow--right {
         right: 0;
-        background-color: rgba(43, 43, 43, 0.6);
     }
     .movieRow--listarea:hover .movieRow--left, .movieRow--listarea:hover .movieRow--right {
         opacity: 1;
         transition: all ease 0.5s;
+    }
+    .movieRow--listarea:hover .movieRow--left {
+        opacity: v-bind("marginList == 0 ? 0 : 1");
+    }
+    .movieRow--listarea:hover .movieRow--right {
+        opacity: v-bind("marginList == (screenSize - 1980) - 30 ? 0 : 1")
     }
 </style>
