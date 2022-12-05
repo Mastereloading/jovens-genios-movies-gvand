@@ -1,5 +1,6 @@
 <template>
   <div>
+    <HeaderComponent :genreData="genres" />
     <ul>
         <li v-for="genre in genres || []" :key="genre.name">
           <GenreComponent :genreData="genre" />
@@ -9,19 +10,20 @@
 </template>
 
 <script>
-import MovieCardComponent from '@/components/MovieCardComponent.vue'
 import { defineComponent } from 'vue'
-import GenreComponent from '../components/GenreComponent.vue'
 import gql from "graphql-tag"
 import { useQuery } from '@vue/apollo-composable'
 import { computed } from 'vue'
+
+import HeaderComponent from '../components/HeaderComponent.vue'
+import GenreComponent from '../components/GenreComponent.vue'
 
 export default defineComponent({
   name: 'HomeView',
 
   components: {
-    GenreComponent,
-    MovieCardComponent
+    HeaderComponent,
+    GenreComponent
   },
   data () {
     const ALL_GENRES = gql`
