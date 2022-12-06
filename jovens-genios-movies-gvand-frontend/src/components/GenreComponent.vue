@@ -36,11 +36,10 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import MovieCardComponent from '../components/MovieCardComponent.vue'
 import gql from "graphql-tag"
 import { useQuery } from '@vue/apollo-composable'
-import { computed } from 'vue'
 
 export default defineComponent({
     name: 'GenreComponent',
@@ -71,7 +70,6 @@ export default defineComponent({
                 this.marginList = (this.screenSize - 1980) - 30 
             }
 
-            console.log('aaa' + this.screenSize)
             console.log(this.marginList)
         }
     },

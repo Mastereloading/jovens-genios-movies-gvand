@@ -4,7 +4,7 @@
       class="toolbar"
       elevation="2"
     >
-    <v-toolbar-title>MJG Movies</v-toolbar-title>
+    <v-toolbar-title>MJG Movies - {{ userData?.name }}</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
     <ul>
@@ -27,6 +27,8 @@
 import { defineComponent } from 'vue'
 import colors from '@/styles/colors'
 
+const userData = JSON.parse(sessionStorage.getItem("userData"))
+
 export default defineComponent({
     name: 'HeaderComponent',
     props: {
@@ -34,15 +36,14 @@ export default defineComponent({
     },
     methods: {
       logout() {
-        this.$router.push("/");
+        sessionStorage.clear()
+        this.$router.push("/")
       },
     },
     data () {
-      setTimeout(() => {
-        console.log(this.genreData)
-      }, 3000)
       return {
-        colors: colors
+        colors: colors,
+        userData: userData
       }
     }
 })

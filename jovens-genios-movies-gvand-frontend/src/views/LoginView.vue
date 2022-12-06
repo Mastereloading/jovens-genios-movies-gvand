@@ -5,7 +5,7 @@
             <div class="card-content">
                 <div class="card-content-area">
                     <label>Username</label>
-                    <input type="text" id="user">
+                    <input type="text" v-model="username">
                 </div>
             </div>
             <div class="card-footer">
@@ -16,14 +16,40 @@
 </template>
 
 <script>
-    import { defineComponent } from 'vue'
+    import { defineComponent, computed } from 'vue'
+    import gql from "graphql-tag"
 
     export default defineComponent({
         name: 'LoginView',
         methods: {
-            login() {
-            this.$router.push("/home");
+            async login() {
+                if (this.username === "") {
+                    alert("Username undefined...")
+                } else {
+                    const GET_USER = gql`
+                        query Users($username: String) {
+                            users(where: { name: $username }) {
+                                name
+                            }
+                        }
+                    `;
+
+                    const { data } = await this.$apollo.query({ query: GET_USER, variables: { username: this.username }})
+                    const user = data?.users[0]
+
+                    if (user) {
+                        sessionStorage.setItem("userData", JSON.stringify(user))
+                        this.$router.push("/home")
+                    } else {
+                        alert("Username not found...")
+                    }
+                }
             },
+        },
+        data() {
+            return {
+                username: ''
+            }
         }
     })
 </script>

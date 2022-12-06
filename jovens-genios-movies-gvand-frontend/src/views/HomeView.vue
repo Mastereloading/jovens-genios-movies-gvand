@@ -10,10 +10,9 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import gql from "graphql-tag"
 import { useQuery } from '@vue/apollo-composable'
-import { computed } from 'vue'
 
 import HeaderComponent from '../components/HeaderComponent.vue'
 import GenreComponent from '../components/GenreComponent.vue'

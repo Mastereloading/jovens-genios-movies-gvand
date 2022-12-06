@@ -9,6 +9,12 @@ const AURA_ENDPOINT = 'neo4j+s://0582b45c.databases.neo4j.io'
 const driver = neo4j.driver(AURA_ENDPOINT, neo4j.auth.basic(USERNAME, PASSWORD))
 
 const typeDefs = gql`
+  type User {
+    name: String!
+  }
+  type Genre {
+    name: String!
+  }
   type Movie {
     title: String!
     plot: String
@@ -17,14 +23,7 @@ const typeDefs = gql`
     year: Int
     runtime: Int
     genres: [Genre!]! @relationship(type: "IN_GENRE", direction: OUT)
-    actors: [Actor!]! @relationship(type: "ACTED_IN", direction: IN)
     directors: [Director!]! @relationship(type: "DIRECTED", direction: IN)
-  }
-  type Genre {
-    name: String!
-  }
-  type Actor {
-    name: String!
   }
   type Director {
     name: String!
